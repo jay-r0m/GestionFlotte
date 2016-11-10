@@ -1,0 +1,50 @@
+@model GestionFlotte.Models.Marin
+
+@{
+    ViewData["Title"] = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>Marin</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Nom)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Nom)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Prenom)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Prenom)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Maitrises)
+        </dt>
+        <dd>
+            <table class="table">
+                <tr>
+                    <th>Maitrise</th>
+                </tr>
+                @foreach (var item in Model.Maitrises)
+                {
+                    <tr>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Role.Nom)
+                        </td>
+                    </tr>
+                }
+            </table>
+        </dd>
+
+    </dl>
+</div>
+<div>
+    <a asp-action="Edit" asp-route-id="@Model.ID">Edit</a> |
+    <a asp-action="Index">Back to List</a>
+</div>
