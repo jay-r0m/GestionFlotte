@@ -3,25 +3,69 @@
 }
 
 <div class="jumbotron">
-    <h1>Contoso University</h1>
+    <h1>Ma gestion de flotte</h1>
 </div>
 <div class="row">
     <div class="col-md-4">
-        <h2>Welcome to Contoso University</h2>
+        <h2>Bienvenue dans mon application de gestion de bateaux et d'&eacute;quipage</h2>
+        <p>Un bateau est caractérisé par son type.</p>
+        <p>Un type de bateau est caractérisé par une liste de postes type avec un nombre minimal de membres assignés à ces postes.</p>
+        <p>Un marin est caractérisé par son nom, son prénom et ses capacités ou roles.
+        <p><i>Cette application ne présente pas d'interface pour administrer les types de bateaux ni les rôles. Conformément au cahier des charges.</i></p>
+    </div>
+    <div class="col-md-4">
+        <h2>Manuel d'utilisation pour l'édition d'un bateau</h2>
+        <p>On créé en premier lieu un bateau.</p>
+        <p>On créé ensuite ses membres d'équipage.</p>
         <p>
-            Contoso University is a sample application that
-            demonstrates how to use Entity Framework Core 1.0 in an
-            ASP.NET Core MVC 1.0 web application.
+            <b>Pour se rendre compte de la complétion de l'équipage, le détail d'un bateau présente ses postes à pourvoir et les marins qui sont à bord.</b>
+            Un message et une icône précise si l'équipage est complet.
+        </p>
+        <p>
+            <u>Attention, la fonctionnalité n'est pas complète. Si plusieurs marins ont plusieurs rôles, on peut avoir un problème d'affecation</u>
+            <i>Si l'unique commandant est aussi capable d'être matelot, le bateau pourra être marqué comme incomplet car aucun autre homme ne sera capable de prendre la barre</i>
         </p>
     </div>
     <div class="col-md-4">
-        <h2>Build it from scratch</h2>
-        <p>You can build the application by following the steps in a series of tutorials.</p>
-        <p><a class="btn btn-default" href="https://docs.asp.net/en/latest/data/ef-mvc/intro.html">See the tutorial &raquo;</a></p>
+        <h2>La création d'un bateau</h2>
+        <p>La création d'un Bateau se fait en cliquant sur l'onglet "bateaux" puis "Create New" ou en allant à <a href="\Bateaux\Create">cet emplacement</a></p>
+        <p>
+            On peut y définir :
+            <ul>
+                <li>son Nom</li>
+                <li>son Type</li>
+            </ul>
+        </p>
     </div>
     <div class="col-md-4">
-        <h2>Download it</h2>
-        <p>You can download the completed project from GitHub.</p>
-        <p><a class="btn btn-default" href="https://github.com/aspnet/Docs/tree/master/aspnet/data/ef-mvc/intro/samples/cu-final">See project source code &raquo;</a></p>
+        <h2>La création d'un marin</h2>
+        <p>La création d'un Bateau se fait en cliquant sur l'onglet "Marins" puis "Create New" ou en allant à <a href="\Marins\Create">cet emplacement</a></p>
+        <p>On peut y définir :
+            <ul>
+                <li>son Nom</li>
+                <li>son Prénom</li>
+                <li>son Bateau</li>
+                <li>son ou ses Rôles</li>
+            </ul>
+        </p>
+    </div>
+    <div class="col-md-8">
+        <h2>Attentions particulières</h2>
+        <p>Cette application représente mes premières armes en environnement Visual Studio et en ASP.NET MVC </p>
+        <p>Je n'ai pas pu intégrer d'éléments JS notamment la saisie de l'équipage en même temps que la création du Bateau comme je souhaitais le faire.</p>
+        <p>Hormi une intégration JS décente, les améliorations fonctionnelles que j'aimerai apporter à l'application telle qu'elle vous est présentée sont :
+            <ul>
+                <li>Bien sûr, les interfaces de gestion des types de bateau (avec postes) et des rôles avec :
+                <ul>
+                    <li>Le sélecteur de type qui présente un champ de saisie matchant les existant ou créant un nouveau type</li>
+                    <li>La possibilité de créer un nouveau rôle à l'édition d'un marin</li>
+                </ul>
+                </li>
+                <li>Ajouter une contrainte d'unicité sur les noms de bateaux</li>
+                <li>Ajouter la possibilité de ne pas saisir de Bateau pour l'édition d'un marin</li>
+                <li>Compléter la fonctionnalité de vérification de l'effectif du bateau. (Trouver un algorithme correct pour valider les postes)</li>
+            </ul>
+        </p>
+        <p><b>La suppression d'un bateau entraîne la suppression de ses membres d'équipage. (Il coule avec son équipage)</b></p>
     </div>
 </div>
