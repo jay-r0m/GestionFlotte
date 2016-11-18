@@ -9,6 +9,5 @@ namespace GestionFlotte.Models.FleetViewModels
     {
         public IEnumerable<Marin> Marins { get; set; }
         public IEnumerable<Role> Roles { get; set; }
-        //public IEnumerable<Enrollment> Enrollments { get; set; }
     }
 }

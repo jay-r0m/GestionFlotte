@@ -26,10 +26,12 @@ namespace GestionFlotte.Controllers
         {
             var viewModel = new MarinIndexData();
             viewModel.Marins = await _context.Marins
-                  .Include(m => m.Roles)
+                .Include(m => m.Roles)
                     .ThenInclude(r => r.Role)
-                  .Include(i => i.Roles)
+                .Include(i => i.Roles)
                     .ThenInclude(i => i.Role)
+                .Include(m => m.Bateau)
+
                   .OrderBy(i => i.Nom)
                   .ToListAsync();
 
@@ -39,14 +41,6 @@ namespace GestionFlotte.Controllers
                 Marin marin = viewModel.Marins.Where(
                     i => i.ID == id.Value).Single();
                 viewModel.Roles = marin.Roles.Select(s => s.Role);
-            }
-
-            if (roleID != null)
-            {
-                ViewData["RoleID"] = roleID.Value;
-                _context.Enrollments
-                    .Include(i => i.Student)
-                    .Where(c => c.CourseID == roleID.Value).Load();
             }
 
             return View(viewModel);
