@@ -7,8 +7,21 @@
 <h2>Details</h2>
 
 <div>
-    <h4>Bateau</h4>
+    <h4>
+        Bateau
+
+        @if (Model.isStaffed)
+        {
+            <i style="color: green;float: right;" class="fa fa-ship fa-2x"> - &Eacute;quipage complet</i>
+        }
+        else
+        {
+            <i style="color: red;float: right;" class="fa fa-anchor fa-2x"> - &Eacute;quipage incomplet</i>
+        }
+    </h4>
+     
     <hr />
+
     <dl class="dl-horizontal">
         <dt>
             @Html.DisplayNameFor(model => model.Nom)
@@ -16,20 +29,46 @@
         <dd>
             @Html.DisplayFor(model => model.Nom)
         </dd>
+
         <dt>
-            @Html.DisplayNameFor(model => model.TypeBateau)
+            @Html.DisplayNameFor(model => model.TypeBateau.Designation)
         </dt>
         <dd>
             @Html.DisplayFor(model => model.TypeBateau.Designation)
         </dd>
+        
+        <dt>
+            @Html.DisplayNameFor(model => model.TypeBateau.Postes)
+        </dt>
+        <dd>
+            <table class="table">
+                <tr>
+                    <th>Poste</th>
+                    <th>Minimum requis</th>
+                </tr>
+                @foreach (var item in Model.TypeBateau.Postes)
+                {
+                    <tr>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Role.Nom)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Minimum)
+                        </td>
+                    </tr>
+                }
+            </table>
+        </dd>
+
         <dt>
             @Html.DisplayNameFor(model => model.Marins)
         </dt>
         <dd>
             <table class="table">
                 <tr>
-                    <th>Équipage</th>
-                    <th>Poste</th>
+                    <th>Nom</th>
+                    <th>Pr&eacute;nom</th>
+                    <th>R&ocirc;les</th>
                 </tr>
                 @foreach (var item in Model.Marins)
                 {
@@ -41,7 +80,10 @@
                             @Html.DisplayFor(modelItem => item.Prenom)
                         </td>
                         <td>
-                            @Html.DisplayFor(modelItem => item.Maitrises)
+                            @foreach (var roleAssignment in item.Roles)
+                            {
+                                @roleAssignment.Role.Nom <br />
+                            }
                         </td>
                     </tr>
                 }

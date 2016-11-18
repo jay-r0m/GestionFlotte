@@ -7,9 +7,9 @@ using System.Threading.Tasks;
 
 namespace GestionFlotte.Data
 {
-    public class SchoolContext : DbContext
+    public class flotteContext : DbContext
     {
-        public SchoolContext(DbContextOptions<SchoolContext> options) : base(options)
+        public flotteContext(DbContextOptions<flotteContext> options) : base(options)
         {
         }
 

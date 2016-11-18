@@ -22,7 +22,14 @@ namespace GestionFlotte.Controllers
         // GET: Bateaux
         public async Task<IActionResult> Index()
         {
-            var flotteContext = _context.Bateaux.Include(b => b.TypeBateau);
+            var flotteContext = _context.Bateaux
+                .Include(b => b.TypeBateau)
+                    .ThenInclude(t => t.Postes)
+                        .ThenInclude(p => p.Role)
+                .Include(b => b.Marins)
+                    .ThenInclude(m => m.Roles)
+                        .ThenInclude(r => r.Role)
+                ;
             return View(await flotteContext.ToListAsync());
         }
 
@@ -37,12 +44,14 @@ namespace GestionFlotte.Controllers
             //            var bateau = await _context.Bateaux.SingleOrDefaultAsync(m => m.ID == id);
 
             var bateau = await _context.Bateaux
-                .Include(t => t.TypeBateau)
-                .Include(s => s.Marins)
-                    .ThenInclude(e => e.Maitrises)
-                        .ThenInclude(u => u.Role)
+                .Include(b => b.TypeBateau)
+                    .ThenInclude(t => t.Postes)
+                        .ThenInclude(r => r.Role)
+                .Include(b => b.Marins)
+                    .ThenInclude(m => m.Roles)
+                        .ThenInclude(r => r.Role)
                 .AsNoTracking()
-                .SingleOrDefaultAsync(m => m.ID == id);
+                .SingleOrDefaultAsync(b => b.ID == id);
 
             if (bateau == null)
             {
@@ -55,7 +64,7 @@ namespace GestionFlotte.Controllers
         // GET: Bateaux/Create
         public IActionResult Create()
         {
-            ViewData["Roles"] = _context.Roles;
+            ViewBag.Roles = _context.Roles;
             ViewData["TypeBateauID"] = new SelectList(_context.TypesBateaux, "TypeBateauID", "Designation");
             return View();
         }
@@ -65,8 +74,9 @@ namespace GestionFlotte.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("Nom,TypeBateauID")] Bateau bateau)
+        public async Task<IActionResult> Create(Bateau bateau)
         {
+            
             try
             {
                 if (ModelState.IsValid)
@@ -109,7 +119,7 @@ namespace GestionFlotte.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("ID,Nom,TypeBateauID")] Bateau bateau)
+        public async Task<IActionResult> Edit(int id, Bateau bateau)
         {
             if (id != bateau.ID)
             {

@@ -11,7 +11,6 @@ namespace GestionFlotte.Models
         [DatabaseGenerated(DatabaseGeneratedOption.None)]
         public int RoleID { get; set; }
         public string Nom { get; set; }
-        // public int Credits { get; set; }
 
         public ICollection<Maitrise> Maitrises { get; set; }
     }

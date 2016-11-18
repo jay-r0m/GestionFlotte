@@ -27,9 +27,26 @@
         <hr />
         <h4>&Eacute;quipage</h4>
         <div class="form-group">
+            <div id="membres-minimum">
+                <h5>Membres minimum</h5>
+            </div>
             <hr />
-            <div id="membres-minimum"></div>
-            <div style="display:none;" id="membres-additionnels-model"></div>
+        </div>
+        <div class="form-group">
+            <div id="membres-additionnels">
+                <h5>Membres additionnels</h5>
+                <div id="0" style="display:flex;">
+                    <input type="text" placeholder="Nom" class="form-control"  style="flex-grow: 1;"/>
+                    <input type="text" placeholder="Prenom" class="form-control"  style="flex-grow: 1;"/>
+                    <select class="form-control" style="flex-grow: 1;">
+                        @foreach (var item in ViewBag.Roles)
+                        {
+                            <option value=@item.RoleID>@item.Nom</option>
+                        }
+                    </select>
+                    <input type="button" class="form-control add-marin" onclick="false;" value="Ajouter"  style="flex-grow: 1;"/>
+                </div>
+            </div>
         </div>
         <div class="form-group">
             <div class="col-md-offset-2 col-md-10">

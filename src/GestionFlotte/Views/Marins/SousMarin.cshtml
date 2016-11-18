@@ -1,0 +1,18 @@
+﻿@model GestionFlotte.Models.Marin
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+@Html.HiddenFor(modelItem => modelItem.ID)
+<tr>
+    <td>
+        @Html.EditorFor(modelItem => modelItem.Nom)
+    </td>
+    <td>
+        @Html.EditorFor(modelItem => modelItem.Prenom)
+    </td>
+    <td>
+        @Html.EditorFor(modelItem => modelItem.Roles)
+    </td>
+</tr>

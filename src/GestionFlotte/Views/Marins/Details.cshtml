@@ -22,26 +22,6 @@
         <dd>
             @Html.DisplayFor(model => model.Prenom)
         </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.Maitrises)
-        </dt>
-        <dd>
-            <table class="table">
-                <tr>
-                    <th>Maitrise</th>
-                </tr>
-                @foreach (var item in Model.Maitrises)
-                {
-                    <tr>
-                        <td>
-                            @Html.DisplayFor(modelItem => item.Role.Nom)
-                        </td>
-                    </tr>
-                }
-            </table>
-        </dd>
-
     </dl>
 </div>
 <div>

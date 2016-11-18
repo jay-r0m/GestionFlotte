@@ -11,7 +11,7 @@
         <h4>Bateau</h4>
         <hr />
         <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-    <input type="hidden" asp-for="ID" />
+        <input type="hidden" asp-for="ID" />
         <div class="form-group">
             <label asp-for="Nom" class="col-md-2 control-label"></label>
             <div class="col-md-10">
@@ -31,7 +31,23 @@
                 <input type="submit" value="Save" class="btn btn-default" />
             </div>
         </div>
-    </div>
+        <div class="form-group">
+            <h4>&Eacute;quipage</h4>
+            <table style="width: 100%;">
+                <tr style="display:flex;">
+                    <th style="flex-grow:1;">
+                        Nom
+                    </th>
+                    <th style="flex-grow:1;">
+                        Pr&eacute;nom
+                    </th>
+                    <th style="flex-grow:1;">
+                        Ma&icirc;trise
+                    </th>
+                </tr>
+                @Html.EditorFor(model => model.Marins)
+            </table>
+        </div>
 </form>
 
 <div>
